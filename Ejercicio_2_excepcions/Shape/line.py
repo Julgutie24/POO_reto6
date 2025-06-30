@@ -1,7 +1,10 @@
+from .exceptions import InvalidShapeError
 from .point import Point
 
 class Line:
     def __init__(self, start_point: Point, end_point: Point):
+        if not isinstance(start_point, Point) or not isinstance(end_point, Point):
+            raise InvalidShapeError("Los extremos deben ser objetos Point.")
         self._start_point = start_point
         self._end_point = end_point
         self._length = self.compute_length()
